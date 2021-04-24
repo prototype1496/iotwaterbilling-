@@ -12,8 +12,8 @@ require '../../model/SuperModel.php';
   
 // get posted data
 //$data = json_decode(file_get_contents("php://input"));
-  $customerID = trim(filter_input(INPUT_POST, 'cutomer_id', FILTER_DEFAULT));
-  $waterReading = trim(filter_input(INPUT_POST, 'water_reading', FILTER_DEFAULT));
+  $customerID = trim(filter_input(INPUT_GET, 'cutomer_id', FILTER_DEFAULT));
+  $waterReading = trim(filter_input(INPUT_GET, 'water_reading', FILTER_DEFAULT));
     //  $customerID =   'CUST00000000027';
      // $waterReading = '500';
   $bill_stataus = 'UNPD';

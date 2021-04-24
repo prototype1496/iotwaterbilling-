@@ -277,7 +277,7 @@ $get_dashboared_stm = SuperModel:: get_dashboared_data();
                                            
                                            <td>.</td>
                                             <td>Sub Total:<?php echo $get_cutomer_stm_bill['TotalAmount']; ?></td>
-                                            <td>Tax:<?php echo $get_cutomer_stm_bill['Tax']; ?></td>
+                                            <td>Surcharge :<?php echo $get_cutomer_stm_bill['Tax']; ?></td>
                                             <td>Payable Amount :<?php echo $amount; ?></td>
                                              
                                           
@@ -334,7 +334,7 @@ $get_dashboared_stm = SuperModel:: get_dashboared_data();
                                            
                                            <td>.</td>
                                             <td>Sub Total:<?php echo $get_cutomer_stm_bill2['TotalAmount']; ?></td>
-                                            <td>Tax:<?php echo $get_cutomer_stm_bill2['Tax']; ?></td>
+                                            <td>Surcharge :<?php echo $get_cutomer_stm_bill2['Tax']; ?></td>
                                             <td>Paid Amount :<?php echo $get_cutomer_stm_bill2['Payableamount']; ?></td>
                                              
                                           

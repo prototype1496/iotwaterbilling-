@@ -2,7 +2,7 @@
 <link href="../../js/Jnotify/jnoty.min.css" rel="stylesheet" type="text/css"/>
 <script src="../../js/Jnotify/jnoty.min.js" type="text/javascript"></script>
 <?php
-
+ require_once '../super/SessionStart.php';
 require  '../../lib/sms/src/Twilio/autoload.php';
   require_once '../../db_connection/dbconfig.php';
    
@@ -15,7 +15,7 @@ use Twilio\Rest\Client;
 $sid    = "AC156c9d8ee6875a827884ac06a98c8243";
 $token  = "d2db65a07490bde6dfbd08842c644530";
 $twilio = new Client($sid, $token);
-$reult = SuperModel::get_cutomer_sms_data();
+$reult = SuperModel::get_cutomer_sms_data('');
 
 
       
