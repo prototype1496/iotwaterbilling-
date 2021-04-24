@@ -3,6 +3,89 @@
 class SuperModel{
     //NEW NEW WATER BILLING 
 
+public static function create_iot_user($nrc,$passport,$username,$password,$first_name,$last_name,$other_name,$contact_no,$gender,$marital_status,$date_of_birth,$usertypeid,$updatedby,$district,$parmary_address,$secondary_address,$email_address) {
+        //the below function creates a teacher in the database
+        
+        //print_r($Teacher);
+        if ($usertypeid==1){
+            $sequenceNo = SuperModel::get_sequence_id(1);
+        }elseif($usertypeid==3)
+            {
+             $sequenceNo = SuperModel::get_sequence_id(3);
+            }
+        else{
+            $sequenceNo = SuperModel::get_sequence_id(2);
+        }
+        
+        
+        try {
+            $Connection = new Connection();
+            $conn = $Connection->connect();
+          
+            $conn->beginTransaction();
+
+           
+            //Insets data into user master tabble
+            $query1 = "INSERT INTO `water_reading_db`.`usermaster` (`PublicID`, `NRC`, `Passport`, `UserName`, `Password`, `FirstName`, `LastName`, `OtherName`, `EmailAddress`, `ContactNo`, `GenderID`, `MaritalStatusID`, `DOB`, `UserTypeID`,`UpdatedBy`, `IsActive`) VALUES ('$sequenceNo', '$nrc','$passport','$username','$password','$first_name','$last_name','$other_name', '$email_address','$contact_no','$gender','$marital_status','$date_of_birth','$usertypeid','$updatedby', '1');";
+           
+            $stm = $conn->prepare($query1);
+            
+           
+            $stm->execute();
+
+            
+//                
+////                //Insets data in address table                                                                                                  
+            $query3 = "INSERT INTO `address` (`PrimaryAddress`, `SecondaryAddress`, `DistrictID`, `UserMaterID`) VALUES ('$parmary_address', '$secondary_address', '$district', '$sequenceNo');";
+            $stm2 = $conn->prepare($query3);
+            $stm2->execute();
+
+            
+            $conn->commit();
+            $conn = Null;
+            return TRUE;
+        } catch (Exception $exc) {
+            $conn->rollBack();
+             
+           echo $exc->getMessage();
+            return FALSE;
+        }
+    }
+    
+    
+    
+    public static function create_iot_area($areaname,$discription,$address,$district_id,$updatedby) {
+        //the below function creates a teacher in the database
+        
+        //print_r($Teacher);
+        
+      
+        try {
+            $Connection = new Connection();
+            $conn = $Connection->connect();
+          
+            $conn->beginTransaction();
+
+           
+            //Insets data into user master tabble
+            $query1 = "INSERT INTO `flood_db`.`area` (`AreaName`, `AreaDiscription`, `Address`, `DistrictID`, `UpdatedBy`) VALUES ('$areaname', '$discription', '$address', '$district_id', '$updatedby');";
+            
+            $stm = $conn->prepare($query1);
+            
+           
+            $stm->execute();
+
+
+            $conn->commit();
+            $conn = Null;
+            return TRUE;
+        } catch (Exception $exc) {
+            $conn->rollBack();
+             
+           // echo $exc->getMessage();
+            return FALSE;
+        }
+    }
     
     
     public static function add_meter_readings($customerID,$waterReading,$bill_stataus,$updated_by) {
@@ -96,7 +179,7 @@ class SuperModel{
         $Connection = new Connection();
         $conn = $Connection->connect();
 
-        $query = "CALL GetCustomerInvoiceDeatils('$customer_id')";
+        $query = "CALL GetCustomerInvoiceDeatils('$customer_id');";
         $stm = $conn->query($query);
        $row = $stm->fetch(PDO::FETCH_ASSOC);
             return $row;

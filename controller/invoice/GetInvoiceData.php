@@ -82,10 +82,7 @@ echo ' <div class= "row invoice-info">
                                                     <th style="width:50%">Subtotal:</th>
                                                     <td>'.$invoice_details['TotalAmount'].'</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Tax (16.0%)</th>
-                                                    <td>'.$invoice_details['Tax'].'</td>
-                                                </tr>
+                                               
                                                
                                                 <tr>
                                                     <th>Total:</th>
